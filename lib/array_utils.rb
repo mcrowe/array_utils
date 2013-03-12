@@ -38,6 +38,11 @@ module ArrayUtils
     array.map { |e| e - scalar}
   end
 
+  def sample_cdf(cdf_array)
+    r = rand
+    (0...cdf_array.size).find { |i| r < cdf_array[i] }
+  end
+
   def sample_index_by_value(array)
     u = unitize(array)
 
@@ -45,9 +50,7 @@ module ArrayUtils
     s = 0
     cumulative_weights = u.map { |p| s += p }
 
-    # Sample from the cumulative weight.
-    r = rand
-    (0...array.size).find { |i| r < cumulative_weights[i] }
+    sample_cdf(cumulative_weights)
   end
 
   def sum(array)

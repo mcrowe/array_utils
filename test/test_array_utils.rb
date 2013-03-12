@@ -65,4 +65,9 @@ class TestArrayUtils < MiniTest::Unit::TestCase
     assert_equal [0, 10, 15], to_i([0.6, 10.2, 15.4])
   end
 
+  def test_sample_cdf
+    assert_equal 1, sample_cdf([0, 1])
+    assert_equal 0, sample_cdf([5, 0, 0])
+  end
+
 end
